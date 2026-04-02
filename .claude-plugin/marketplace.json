@@ -1,0 +1,15 @@
+{
+  "name": "micro-skill-pipeline-marketplace",
+  "version": "1.0.0",
+  "owner": {
+    "name": "Steve Solun"
+  },
+  "plugins": [
+    {
+      "name": "micro-skill-pipeline",
+      "source": "./micro-skill-pipeline",
+      "description": "Converts monolithic skills into gated micro-skill pipelines with YES/NO quality gates and compounding failure logs.",
+      "version": "1.0.0"
+    }
+  ]
+}

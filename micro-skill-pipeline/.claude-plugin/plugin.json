@@ -1,0 +1,10 @@
+{
+  "name": "micro-skill-pipeline",
+  "version": "1.0.0",
+  "description": "Gated micro-skill pipeline system. Converts monolithic skills into small, sequenced steps with YES/NO gates and a compounding failure log. Use /skill-convert to convert, /skill-use to activate a pipeline, /skill-check to run gates, /skill-list to see conversions, /skill-new to scaffold, /skill-fail to log patterns, /skill-bypass to use the original.",
+  "author": {
+    "name": "Steve Solun"
+  },
+  "category": "productivity",
+  "keywords": ["skills", "pipeline", "quality", "gates", "micro-skills", "conversion"]
+}

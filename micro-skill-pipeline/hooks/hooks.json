@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -f failure-log.md ] && [ -f check-gates.md ]; then echo 'Micro-skill pipeline: failure-log.md found. Read it before starting any pipeline run.'; fi"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Skill",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/check-converted.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
