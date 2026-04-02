@@ -248,10 +248,6 @@ This survives plugin updates. A `registry.json` indexes all conversions. The ori
 
 See [examples/api-crud-skill/](examples/api-crud-skill/) for a full before/after conversion of a 256-line skill into a micro-skill pipeline, with a walkthrough of each pipeline stage.
 
-## Design
-
-See [docs/plans/2026-04-02-micro-skills-plugin-design.md](docs/plans/2026-04-02-micro-skills-plugin-design.md) for architecture decisions.
-
 ## Citation
 
 If you use this plugin or build on it, please cite this repository:
